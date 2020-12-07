@@ -29,7 +29,7 @@ let persons =
   }
 
 app.get('/', (request, response) =>  {
-    response.send('<h1>hello from Server</h1>')
+    response.send('<h1>Hello from Server</h1>')
 }
 )
 
