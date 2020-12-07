@@ -28,11 +28,6 @@ let persons =
     ]
   }
 
-const app = http.createServer((request, response) => {
-    response.writeHead(200, {'Content-Type':'application/json'})
-    response.end(JSON.stringify(persons))
-})
-
 app.get('/', (request, response) =>  {
     response.send('<h1>hello from Server</h1>')
 }
