@@ -45,7 +45,7 @@ app.get('/info', (request, response) => {
       ${new Date().toString()}
       </p>
       <p>
-        Phonebook has info for ${persons.persons.length} persons.
+        Phonebook has info for ${persons.length} persons.
       </p>
     </div>`
   )
@@ -53,7 +53,7 @@ app.get('/info', (request, response) => {
 
 app.get('/api/persons/:id', (req, res) => {
   const id = Number(req.params.id)
-  const person = persons.persons.find(x => x.id == id)
+  const person = persons.find(x => x.id == id)
   if (person) {
     res.send(person)
   } else {
@@ -64,9 +64,7 @@ app.get('/api/persons/:id', (req, res) => {
 app.delete('/api/persons/:id', (req,res) => {
   const id = Number(req.params.id)
   console.log("In delete!!!!!!!!!")
-  console.log("In delete !!!!!!!!!!", persons.persons[0])
-  const persons = persons.map(persons => 
-    persons.filter(x => x.id !== id))
+  const persons = persons.filter(x => x.id !== id)
 
   res.status(204).end()
 })
