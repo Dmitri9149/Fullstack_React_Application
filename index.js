@@ -1,10 +1,7 @@
 const express = require('express')
 const app = express()
 
-let persons = 
-
-{
-    "persons":[
+let persons = [
       { 
         "name": "Arto Hellas", 
         "number": "040-123456",
@@ -31,7 +28,6 @@ let persons =
         "id": 5
       }      
     ]
-  }
 
 app.get('/', (request, response) =>  {
     response.send('<h1>Hello from Server</h1>')
@@ -65,9 +61,13 @@ app.get('/api/persons/:id', (req, res) => {
   }
 })
 
-app.delete('/api/persons/:id', (req,res)=> {
+app.delete('/api/persons/:id', (req,res) => {
   const id = Number(req.params.id)
-  const persons = persons.persons.filter(x => x.id !== id )
+  console.log("In delete!!!!!!!!!")
+  console.log("In delete !!!!!!!!!!", persons.persons[0])
+  const persons = persons.map(persons => 
+    persons.filter(x => x.id !== id))
+
   res.status(204).end()
 })
 
