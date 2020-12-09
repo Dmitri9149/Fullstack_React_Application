@@ -76,7 +76,7 @@ app.delete('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (req,res) => {
   const person = req.body
-  person.id = getRandomInt(maxId)
+  person.id = getRandomInt()
   persons.concat(person)
   res.json(person)
 })
