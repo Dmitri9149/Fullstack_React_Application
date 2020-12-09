@@ -33,7 +33,7 @@ let persons = [
 
 const getRandomInt = () => 
   Math.floor(Math.random() * Math.floor(maxId))
-const maxId = 1000000
+const maxId = 1000000000
 
 app.get('/', (request, response) =>  {
     response.send('<h1>Hello from Server</h1>')
@@ -74,11 +74,11 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(204).end()
 })
 
-app.post('/api/persons', (req,res) => {
-  const person = req.body
+app.post('/api/persons', (request,response) => {
+  const person = request.body
   person.id = getRandomInt()
-  persons.concat(person)
-  res.json(person)
+  persons = persons.concat(person)
+  response.json(person)
 })
 
 const PORT = 3001
