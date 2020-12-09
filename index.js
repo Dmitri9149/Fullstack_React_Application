@@ -82,6 +82,15 @@ app.post('/api/persons', (request,response) => {
       error:'name or number missed'
     })
   }
+// name already exist -> error
+  const inclName = (persons.map( x => x.name).includes(person.name))
+  if (inclName) {
+    return response.status(400).json({
+      error: 'the name already exist'
+    })
+  }
+
+
   person.id = getRandomInt()
   persons = persons.concat(person)
   response.json(person)
