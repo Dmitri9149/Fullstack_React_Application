@@ -76,6 +76,12 @@ app.delete('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (request,response) => {
   const person = request.body
+// no name or number -> error
+  if(!person.name || !person.number) {
+    return response.status(400).json({
+      error:'name or number missed'
+    })
+  }
   person.id = getRandomInt()
   persons = persons.concat(person)
   response.json(person)
