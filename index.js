@@ -31,8 +31,8 @@ let persons = [
   }      
 ]
 
-const getRandomInt = max => 
-  Math.floor(Math.random() * Math.floor(max))
+const getRandomInt = () => 
+  Math.floor(Math.random() * Math.floor(maxId))
 const maxId = 1000000
 
 app.get('/', (request, response) =>  {
