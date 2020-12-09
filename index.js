@@ -31,6 +31,10 @@ let persons = [
   }      
 ]
 
+const getRandomInt = max => 
+  Math.floor(Math.random() * Math.floor(max))
+const maxId = 1000000
+
 app.get('/', (request, response) =>  {
     response.send('<h1>Hello from Server</h1>')
 }
