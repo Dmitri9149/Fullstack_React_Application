@@ -117,5 +117,3 @@ dist
 .yarn/install-state.gz
 .pnp.*
 ## end of the ref
-
-build/
