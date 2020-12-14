@@ -117,3 +117,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 ## end of the ref
+
+
+## the file for testing some functionality of MongoDB
+.mongo_tmp.js
