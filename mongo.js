@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-if (process.argv.length < 4) {
+if (process.argv.length < 3) {
   console.log('Not enought arguments. exit!')
   process.exit(1)
 }
@@ -19,11 +19,20 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model('Person', personSchema)
 
+if (process.argv.length < 4) {
+  Person.find({}).then(result => {
+    result.forEach(person =>{
+      console.log(person)
+      mongoose.connection.close()
+    })
+  })
+}
+
 const person = new Person({})
 person.name=process.argv[3]
 person.number=process.argv[4]
 
 person.save().then(result => {
-  console.log('person saved!')
+  console.log(`added person ${process.argv[3]} number ${process.argv[4]} to the phonebook`)
   mongoose.connection.close()
 })
