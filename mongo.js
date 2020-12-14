@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-if (process.argv.length < 6) {
+if (process.argv.length < 4) {
   console.log('Not enought arguments. exit!')
   process.exit(1)
 }
@@ -17,13 +17,11 @@ const personSchema = new mongoose.Schema({
   number:String
 })
 
-const Person = mongoose.model('Person', noteSchema)
+const Person = mongoose.model('Person', personSchema)
 
-const person = new Person({
-    name = process.argv[3],
-    number = process.argv[4]
-
-})
+const person = new Person({})
+person.name=process.argv[3]
+person.number=process.argv[4]
 
 person.save().then(result => {
   console.log('person saved!')
