@@ -43,6 +43,20 @@ let persons = [
   }      
 ]
 
+const mongoose = require('mongoose')
+
+const url =
+  `mongodb+srv://full_stack:${password}@cluster0.2m41j.mongodb.net/full_stack?retryWrites=true&w=majority`
+
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+
+const personSchema = new mongoose.Schema({
+  name: String,
+  number:String
+})
+
+const Person = mongoose.model('Person', personSchema)
+
 const getRandomInt = () => 
   Math.floor(Math.random() * Math.floor(maxId))
 const maxId = 1000000000
