@@ -45,8 +45,7 @@ let persons = [
 
 const mongoose = require('mongoose')
 
-const url =
-  `mongodb+srv://full_stack:${password}@cluster0.2m41j.mongodb.net/full_stack?retryWrites=true&w=majority`
+const url =process.env.MONGODB_URI
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
@@ -123,6 +122,7 @@ app.post('/api/persons', (request,response) => {
   response.json(person)
 })
 
-const PORT = process.env.PORT || 3001
-app.listen(PORT)
-console.log(`Server running on port ${PORT}`)
+const PORT = process.env.PORT
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
+})
