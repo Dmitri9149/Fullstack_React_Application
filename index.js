@@ -17,34 +17,6 @@ app.use(cors())
 
 app.use(express.static('build'))
 
-let persons = [
-  { 
-    "name": "Arto Hellas", 
-    "number": "040-123456",
-    "id": 1
-  },
-  { 
-    "name": "Ada Lovelace", 
-    "number": "39-44-5323523",
-    "id": 2
-  },
-  { 
-    "name": "Dan Abramov", 
-    "number": "12-43-234345",
-    "id": 3
-  },
-  { 
-    "name": "Mary Poppendieck", 
-    "number": "39-23-6423122",
-    "id": 4
-  },
-  { 
-    "name": "Mary ", 
-    "number": "39-23-6423122",
-    "id": 5
-  }      
-]
-
 const getRandomInt = () => 
   Math.floor(Math.random() * Math.floor(maxId))
 const maxId = 1000000000
@@ -89,26 +61,25 @@ app.delete('/api/persons/:id', (request, response) => {
   response.status(204).end()
 })
 
+
 app.post('/api/persons', (request,response) => {
-  const person = request.body
-// no name or number -> error
-  if(!person.name || !person.number) {
+  const body = request.body
+// no content -> error
+  if(body === undefined) {
     return response.status(400).json({
-      error:'name or number missed'
-    })
-  }
-// name already exist -> error
-  const inclName = (persons.map( x => x.name).includes(person.name))
-  if (inclName) {
-    return response.status(400).json({
-      error: 'the name already exist'
+      error:'content missed'
     })
   }
 
+  const person = new Person({
+    name:body.name,
+    number:body.number
+  })
 
-  person.id = getRandomInt()
-  persons = persons.concat(person)
-  response.json(person)
+  person.save().then(savedPerson => {
+    response.json(savedPerson)
+  })
+  
 })
 
 const PORT = process.env.PORT
