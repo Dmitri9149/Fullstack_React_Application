@@ -5,6 +5,7 @@ const Person = require('./models/person')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
+const { response } = require('express')
 
 app.use(express.json())
 
@@ -81,6 +82,21 @@ app.post('/api/persons', (request,response) => {
     response.json(savedPerson.toJSON())
   })
 
+})
+
+app.put('api/persons/:id', (req, re, next) => {
+  const body = request.body
+
+  const person = {
+    name:body.name,
+    number:body.number
+  }
+
+  Note.findByIdAndUpdate(req.params.id, person, {new:true})
+    .then(updatedPerson => {
+      response(updatedPerson.json(toJSON()))
+    })
+    .cathc(error => next(error))
 })
 
 const unknownEndpoint = (request, response) => {
