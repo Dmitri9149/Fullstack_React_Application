@@ -55,8 +55,9 @@ app.get('/api/persons/:id', (req, res) => {
 })
 
 app.delete('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  persons = persons.filter(person => person.id !== id)
+  Person.findById(request.params.id).then(person => {
+    response.json(person)
+  })
 
   response.status(204).end()
 })
@@ -79,7 +80,7 @@ app.post('/api/persons', (request,response) => {
   person.save().then(savedPerson => {
     response.json(savedPerson)
   })
-  
+
 })
 
 const PORT = process.env.PORT
