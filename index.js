@@ -84,19 +84,18 @@ app.post('/api/persons', (request,response) => {
 
 })
 
-app.put('api/persons/:id', (req, re, next) => {
+app.put('/api/persons/:id', (request, response, next) => {
   const body = request.body
 
   const person = {
-    name:body.name,
-    number:body.number
+    number: body.number
   }
 
-  Note.findByIdAndUpdate(req.params.id, person, {new:true})
+  Person.findByIdAndUpdate(request.params.id, person, { new: true })
     .then(updatedPerson => {
-      response(updatedPerson.json(toJSON()))
+      response.json(updatedPerson.toJSON())
     })
-    .cathc(error => next(error))
+    .catch(error => next(error))
 })
 
 const unknownEndpoint = (request, response) => {
