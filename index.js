@@ -44,24 +44,11 @@ app.get('/info', (request, response) => {
   )
 })
 
-app.get('/api/persons/:id', (req, res) => {
-  const id = Number(req.params.id)
-  const person = persons.find(x => x.id == id)
-  if (person) {
-    res.send(person)
-  } else {
-    res.status(404).end()
-  }
-})
-
-app.delete('/api/persons/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response) => {
   Person.findById(request.params.id).then(person => {
     response.json(person)
   })
-
-  response.status(204).end()
 })
-
 
 app.post('/api/persons', (request,response) => {
   const body = request.body
