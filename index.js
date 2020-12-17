@@ -78,9 +78,11 @@ app.post('/api/persons', (request,response) => {
     number:body.number
   })
 
-  person.save().then(savedPerson => {
+  person.save()
+  .then(savedPerson => {
     response.json(savedPerson.toJSON())
   })
+  .catch(error => next(error))
 
 })
 
@@ -107,9 +109,11 @@ app.use(unknownEndpoint)
 const errorHandler = (error, request, response, next) => {
   console.error(error.message)
 
-  if (error.name === 'CastError' && error.kind == 'ObjectId') {
+  if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
-  } 
+  } else if (error.name === 'ValidationError') {
+    return response.status(400).json({ error: error.message })
+  }
 
   next(error)
 }
