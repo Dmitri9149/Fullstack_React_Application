@@ -16,10 +16,18 @@ mongoose.connect(url,
   })
 
 
-const personSchema = new mongoose.Schema({
-  name: String,
-  number:String
-})
+  const personSchema =  new mongoose.Schema({
+    name: {
+      type:String,
+      minlength: 3,
+      required: true,
+      unique:true
+    },
+    number: {
+      type:String,
+      minlength: 8
+    }
+  })
 
 personSchema.set('toJSON', {
   transform: (document, returnedObject) => {
@@ -28,6 +36,8 @@ personSchema.set('toJSON', {
     delete returnedObject.__v
   }
 })
+
+personSchema.plugin(uniqueValidator)
 
 const Person = mongoose.model('Person', personSchema)
 
