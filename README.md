@@ -16,6 +16,8 @@ Functionality:
 
 MongoDB is used to save the perssons information. 
 
+The application is running at https://lit-stream-57490.herokuapp.com/
+
 
 The front..backend approximatelly correspond to the projects to be done 
 in the course : [Deep Dive Into Modern Web Development; 
