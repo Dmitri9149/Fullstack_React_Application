@@ -1,24 +1,25 @@
+/* eslint-disable semi */
 module.exports = {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true
+    'env': {
+        'browser': true,
+        'commonjs': true,
+        'es2021': true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
+    'extends': [
+        'eslint:recommended',
+        'plugin:react/recommended'
     ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
+    'parserOptions': {
+        'ecmaFeatures': {
+            'jsx': true
         },
-        "ecmaVersion": 12
+        'ecmaVersion': 12
     },
-    "plugins": [
-        "react"
+    'plugins': [
+        'react'
     ],
-//    "rules": {
-//    }
+    //    "rules": {
+    //    }
     'rules': {
         'indent': [
             'error',
