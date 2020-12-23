@@ -41,6 +41,7 @@ personSchema.set('toJSON', {
 
 personSchema.plugin(uniqueValidator)
 
+// eslint-disable-next-line no-unused-vars
 const Person = mongoose.model('Person', personSchema)
 
 module.exports = mongoose.model('Person', personSchema)
