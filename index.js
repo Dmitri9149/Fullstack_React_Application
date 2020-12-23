@@ -5,7 +5,6 @@ const Person = require('./models/person')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
 const cors = require('cors')
-const { response } = require('express')
 
 app.use(express.json())
 
@@ -43,13 +42,15 @@ app.get('/info', (request, response) => {
 })
 
 app.get('/api/persons/:id', (request, response, next) => {
-    Person.findById(request.params.id).then(person => {
-        if(person) {
-            response.json(person.toJSON())
-        } else {
-            response.status(404).end()
-        }
-    })
+    Person
+        .findById(request.params.id)
+        .then(person => {
+            if(person) {
+                response.json(person.toJSON())
+            } else {
+                response.status(404).end()
+            }
+        })
         .catch(error => next(error))
 })
 
