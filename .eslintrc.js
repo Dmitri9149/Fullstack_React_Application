@@ -17,6 +17,26 @@ module.exports = {
     "plugins": [
         "react"
     ],
-    "rules": {
+//    "rules": {
+//    }
+    'rules': {
+        'indent': [
+            'error',
+            4
+        ],
+        'linebreak-style': [
+            'error',
+            'unix'
+        ],
+        'quotes': [
+            'error',
+            'single'
+        ],
+        'semi': [
+            'error',
+            'never'
+        ]
     }
+
+
 };
