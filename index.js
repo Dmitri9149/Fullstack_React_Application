@@ -10,6 +10,7 @@ app.use(express.json())
 
 app.use(bodyParser.json())
 
+// eslint-disable-next-line no-unused-vars
 morgan.token('body', function (req, res) { return JSON.stringify(req.body) })
 app.use(morgan(':method :url :body :status :res[content-length] - :response-time ms'))
 
